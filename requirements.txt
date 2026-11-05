@@ -1,0 +1,4 @@
+# No third-party dependencies — the template runs on the Python standard
+# library only. Add per-bounty libraries below, e.g.:
+# discord.py>=2.3
+# python-telegram-bot>=21

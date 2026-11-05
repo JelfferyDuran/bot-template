@@ -1,0 +1,1 @@
+"""Generic polling bot template."""

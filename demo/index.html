@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bot-template — live demo</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.55; }
+  h1 { font-size: 24px; }
+  .sub { color: #555; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  #log div { padding: 8px 10px; border-radius: 6px; margin: 6px 0; font-size: 14px; }
+  .alert { background: #e6f7e6; border: 1px solid #9ed69e; }
+  .skip { background: #f5f5f5; border: 1px solid #ddd; color: #777; }
+  button { padding: 10px 18px; font-size: 15px; border-radius: 8px; border: 1px solid #ccc; background: #111; color: #fff; cursor: pointer; }
+  a { color: #0b5fff; }
+  .foot { margin-top: 28px; font-size: 13px; color: #888; }
+</style>
+</head>
+<body>
+  <h1>bot-template — live demo</h1>
+  <p class="sub">A generic polling bot: poll a source, dedupe what it already saw, alert on what's new. This page simulates a poll cycle in your browser — one item is already in the seen-set, so it gets skipped. The <a href="/api/health">/api/health</a> endpoint runs the same logic on the server.</p>
+  <div id="log"></div>
+  <p><button onclick="runCycle()">Run another poll cycle</button></p>
+  <p>Repo: <a href="https://github.com/JelfferyDuran/bot-template">github.com/JelfferyDuran/bot-template</a></p>
+  <p class="foot">Polling + dedupe + alerts + multi-server config. Python stdlib only. No tokens, no accounts — the demo runs on fake data.</p>
+  <script>
+    const samples = [
+      { id: "demo-1", title: "Sample bounty: Discord moderation bot" },
+      { id: "demo-2", title: "Sample bounty: Telegram appointment bot" },
+      { id: "demo-3", title: "Sample bounty: price-drop scraper" }
+    ];
+    const seen = new Set(["demo-1"]);
+    function runCycle() {
+      const log = document.getElementById("log");
+      samples.forEach(item => {
+        const line = document.createElement("div");
+        if (seen.has(item.id)) {
+          line.textContent = "SKIP (already seen): " + item.title;
+          line.className = "skip";
+        } else {
+          seen.add(item.id);
+          line.textContent = "ALERT (new): " + item.title;
+          line.className = "alert";
+        }
+        log.appendChild(line);
+      });
+    }
+    runCycle();
+  </script>
+</body>
+</html>
