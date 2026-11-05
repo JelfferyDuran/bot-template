@@ -2,7 +2,7 @@
 
 A generic polling bot starter: **poll a source, dedupe what it already saw, alert on what's new** — with multi-server config wired in. Fork it per bounty, point it at the real source, ship.
 
-**Live demo:** <!-- DEMO_URL -->
+**Live demo:** https://bot-template-kingdom-noel.vercel.app
 
 ## What's inside
 
